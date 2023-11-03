@@ -16,7 +16,7 @@ let questions = ["Who was the first American woman in space? ",
 "(5 + 3)/2 * 10 = ? ",
 "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ",
 "What is the minimum crew size for the ISS? "];
-let correctAnswers = ["Sally Ride", "True", "40", "Trajectory", "3"];
+let correctAnswers = ["Sally Ride", "true", "40", "Trajectory", "3"];
 let candidateAnswers = [];
 
 
@@ -30,7 +30,7 @@ function askQuestion() {
 for (let i = 0; i < questions.length; i++) {
 candidateAnswer = input.question(questions[i]);
 candidateAnswers.push(candidateAnswer);
-console.log(`Your answer: ${candidateAnswers[i]} \nCorrect answer: ${correctAnswers[i]}\n`);
+console.log(`\nYour answer: ${candidateAnswers[i]} \nCorrect answer: ${correctAnswers[i]}\n`);
 }
 }
 
@@ -54,7 +54,7 @@ if (candidateAnswers[i] === correctAnswers[i]) {
 function runProgram() {
   askForName();
   // TODO 1.1c: Greet candidate using their name //
-  console.log("Hello, "+ candidateName + ". Welcome to LaunchCode."); 
+  console.log("Hello, "+ candidateName + ". Welcome to LaunchCode.\n"); 
   askQuestion();
   // console.log("questions: ", questions );
   // console.log();

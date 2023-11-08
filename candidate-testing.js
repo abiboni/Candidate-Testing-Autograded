@@ -18,10 +18,8 @@ let questions = ["Who was the first American woman in space? ",
 "What is the minimum crew size for the ISS? "];
 let correctAnswers = ["Sally Ride", "true", "40", "Trajectory", "3"];
 let candidateAnswers = [];
-let questionResponse;
-let grade;
-let score = 0
-let gradeResponse = ["Perfect score!", "Great work", "FAILED"];
+
+// let gradeResponse = ["Perfect score!", "Great work", "FAILED"];
 
 
 function askForName() {
@@ -32,9 +30,9 @@ candidateName = input.question("What is your name? ");
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
 for (let i = 0; i < questions.length; i++) {
-candidateAnswer = input.question(questions[i]);
+candidateAnswer = input.question(`${i+1}) ${questions[i]}`);
 candidateAnswers.push(candidateAnswer);
-console.log(`\nYour answer: ${candidateAnswers[i]} \nCorrect answer: ${correctAnswers[i]}\n`);
+console.log(`Your answer: ${candidateAnswers[i]} \nCorrect answer: ${correctAnswers[i]}\n`);
 // console.log(questionResponse);
 }
 }
@@ -42,31 +40,42 @@ console.log(`\nYour answer: ${candidateAnswers[i]} \nCorrect answer: ${correctAn
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-for (let i = 0; i < candidateAnswers.length; i++) {
-if (candidateAnswers[i] === correctAnswers[i]) {
-    console.log('\nThat is correct!');
-} else {
-    console.log(`\n${candidateAnswers[i]} is incorrect. \nThe answer is ${correctAnswers[i]}!\n`);
-  }
-}
+// for (let i = 0; i < candidateAnswers.length; i++) {
+// if (candidateAnswers[i] === correctAnswers[i].toLowerCase) {
+// askQuestion.push() (MAYBE ADD THIS ONE? below is the original condition)
+//     console.log('\nThat is correct!\n');
+// } else {
+//     console.log(`\n${candidateAnswers[i]} is incorrect. \nThe answer is ${correctAnswers[i]}!\n`);
+  // }
+// }
 
 //TODO 3.2 use this variable to calculate the candidates score.
 // let grade;
 // let score = 0
 // let gradeResponse = ["Perfect score!", "Great work", "FAILED"]
+let grade;
+let score = 0
+
 for (let i = 0; i < candidateAnswers.length; i++) {
-  if(candidateAnswers[i] === correctAnswers[i]) {
-  score+= 1;
+  if(candidateAnswers[i].toLowerCase()=== correctAnswers[i].toLowerCase()) {
+  score+= 1; 
+  } else {
+  score+= 0;
 } 
 }
+
 grade = score / questions.length * 100
+
 // console.log(`${grade}%`)
+let gradeResponse = (`(${score} of 5 responses correct)`);
 if (grade === 100) {
-  console.log(`Overall Grade: ${grade}% >>> ${gradeResponse[0]}\n`)
-} else if (grade <= 80 && grade > 60) {
-  console.log(`Overall Grade: ${grade}% >>> ${gradeResponse[1]}\n`)
-} else (grade <=40) 
-console.log(`Overall Grade: ${grade}% >>> ${gradeResponse[2]}\n`)
+  console.log(`>>> Overall Grade: ${grade}% ${gradeResponse}\n>>> Status: PASS <<<`);
+} else if (grade <= 99 && grade >= 70) {
+  console.log(`>>> Overall Grade: ${grade}% ${gradeResponse}\n>>> Status: PASS <<<`);
+} else {
+  console.log(`>>> Overall Grade: ${grade}% ${gradeResponse}\n>>> Status: FAIL <<<`);
+} 
+return grade;
 }
 
 
@@ -74,6 +83,7 @@ function runProgram() {
   askForName();
   // TODO 1.1c: Greet candidate using their name //
   console.log("Hello, "+ candidateName + ". Welcome to LaunchCode.\n"); 
+  console.log(`Candidate Name: ${candidateName}`)
   askQuestion();
   // console.log("questions: ", questions );
   // console.log();
